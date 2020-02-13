@@ -5,7 +5,12 @@ $(document).ready(function(){
       url: 'http://157.230.17.132:3030/todos',
       method: 'GET',
       success: function(data){
-        console.log(data);
+        // console.log(data);
+        for (var i = 0; i < data.length; i++) {
+          // console.log(data[i]);
+          var text = data[i];
+          console.log(text);
+        }
       },
       error: function(error) {
         console.log('error', error);
