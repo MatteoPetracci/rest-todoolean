@@ -2,25 +2,7 @@
 $(document).ready(function(){
   getList();
   $('button').click(function(){
-    var inputValue = $('input').val();
-    console.log(inputValue);
-    $.ajax(
-      {
-        url: 'http://157.230.17.132:3030/todos',
-        method: 'POST',
-        data: {
-          text: inputValue
-        },
-        success: function(data){
-          console.log(data);
-          $('#shop-list').empty();
-          getList();
-        },
-        error: function(error) {
-          console.log('error', error);
-        }
-      }
-    );
+    post();
   })
 })
 
@@ -44,6 +26,28 @@ function getList(){
           var html = template(context);
           $('#shop-list').append(html);
         }
+      },
+      error: function(error) {
+        console.log('error', error);
+      }
+    }
+  );
+}
+
+function post(){
+  var inputValue = $('input').val();
+  console.log(inputValue);
+  $.ajax(
+    {
+      url: 'http://157.230.17.132:3030/todos',
+      method: 'POST',
+      data: {
+        text: inputValue
+      },
+      success: function(data){
+        console.log(data);
+        $('#shop-list').empty();
+        getList();
       },
       error: function(error) {
         console.log('error', error);
