@@ -6,10 +6,17 @@ $(document).ready(function(){
       method: 'GET',
       success: function(data){
         // console.log(data);
+        var source = $("#entry-template").html();
+        var template = Handlebars.compile(source);
         for (var i = 0; i < data.length; i++) {
           // console.log(data[i]);
           var text = data[i];
           console.log(text);
+          var context = {
+            list: text.text
+          }
+          var html = template(context);
+          $('#shop-list').append(html);
         }
       },
       error: function(error) {
