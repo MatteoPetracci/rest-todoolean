@@ -10,7 +10,7 @@ $(document).ready(function(){
     var idList = element.parent().attr('id-attr');
     console.log(idList);
     deleteList(idList)
-  })
+  });
 });
 
 
