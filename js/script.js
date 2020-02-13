@@ -1,5 +1,14 @@
 // Creiamo una app che permette di inserire e cancellare dei todos in una lista utilizzando la API boolean per fare operazioni CRUD.
 $(document).ready(function(){
+  getList();
+  $('button').click(function(){
+    var inputValue = $('input').val();
+    console.log(inputValue);
+  })
+})
+
+
+function getList(){
   $.ajax(
     {
       url: 'http://157.230.17.132:3030/todos',
@@ -24,4 +33,4 @@ $(document).ready(function(){
       }
     }
   );
-})
+}
