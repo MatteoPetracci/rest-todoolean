@@ -71,8 +71,8 @@ function deleteList(id) {
       method: 'DELETE',
       success: function(data){
         console.log(data);
-        $('li.list').text('')
-        getlist()
+        $('#shop-list').html('')
+        getList();
       },
       error: function(error) {
         console.log('error', error);
