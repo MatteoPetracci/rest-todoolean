@@ -3,8 +3,15 @@ $(document).ready(function(){
   getList();
   $('button').click(function(){
     post();
+  });
+  $(document).on('click', '#delete', function() {
+    var element = $(this);
+    console.log(element);
+    var idList = element.parent().attr('id-attr');
+    console.log(idList);
+    deleteList(idList)
   })
-})
+});
 
 
 function getList(){
@@ -19,9 +26,10 @@ function getList(){
         for (var i = 0; i < data.length; i++) {
           // console.log(data[i]);
           var text = data[i];
-          console.log(text);
+          // console.log(text);
           var context = {
-            list: text.text
+            list: text.text,
+            id: text.id
           }
           var html = template(context);
           $('#shop-list').append(html);
@@ -36,7 +44,7 @@ function getList(){
 
 function post(){
   var inputValue = $('input').val();
-  console.log(inputValue);
+  // console.log(inputValue);
   $.ajax(
     {
       url: 'http://157.230.17.132:3030/todos',
@@ -45,9 +53,26 @@ function post(){
         text: inputValue
       },
       success: function(data){
-        console.log(data);
+        // console.log(data);
         $('#shop-list').empty();
         getList();
+      },
+      error: function(error) {
+        console.log('error', error);
+      }
+    }
+  );
+}
+
+function deleteList(id) {
+  $.ajax(
+    {
+      url: 'http://157.230.17.132:3030/todos/' + id,
+      method: 'DELETE',
+      success: function(data){
+        console.log(data);
+        $('li.list').text('')
+        getlist()
       },
       error: function(error) {
         console.log('error', error);
