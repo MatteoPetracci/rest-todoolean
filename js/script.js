@@ -4,6 +4,23 @@ $(document).ready(function(){
   $('button').click(function(){
     var inputValue = $('input').val();
     console.log(inputValue);
+    $.ajax(
+      {
+        url: 'http://157.230.17.132:3030/todos',
+        method: 'POST',
+        data: {
+          text: inputValue
+        },
+        success: function(data){
+          console.log(data);
+          $('#shop-list').empty();
+          getList();
+        },
+        error: function(error) {
+          console.log('error', error);
+        }
+      }
+    );
   })
 })
 
